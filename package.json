@@ -9,12 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.8.4",
     "cesium": "^1.127.0",
     "element-plus": "^2.9.6",
     "less": "^4.2.2",
     "pinia": "^3.0.1",
     "pinia-plugin-persist": "^1.0.0",
     "pinia-plugin-persistedstate": "^4.2.0",
+    "proj4": "^2.15.0",
     "unplugin-auto-import": "^19.1.1",
     "unplugin-vue-components": "^28.4.1",
     "vite-plugin-cesium": "^1.2.23",

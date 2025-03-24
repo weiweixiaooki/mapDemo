@@ -1,42 +1,28 @@
 <script setup>
 </script>
 
-
 <template>
- 
   <div class="map-box" id="cesiumContainer">
-  <router-view /></div>
-
+    <router-view />
+  </div>
 </template>
 
 <style lang="less" scoped>
-/* 主布局 */
-.title {
-  position: absolute;
-  top: 10px;
-  left: 20px;
-}
-.el-link {
-  font-size: large;
-  color: @primary-color;
-}
-.el-link:hover {
-  color: @primary-color-light;
-}
-#cesiumContainer{
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #eaeaea;
-  padding: 10px;
-}
-.map-box {
-  width: 100%;     /* 父容器宽度100% */
-  height: 100vh;   /* 父容器高度100% */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
 }
 
+
+.map-box {
+  width: 100vw;  
+  height: 100vh; 
+  position: absolute; 
+  top: 0;
+  left: 0;
+}
 </style>

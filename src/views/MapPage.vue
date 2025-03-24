@@ -1,106 +1,99 @@
 <template>
+    <!-- 按钮操作区 -->
+    <el-button-group class="control-buttons">
+      <el-button type="primary" @click="loadData">加载三维数据</el-button>
+      <el-button type="success" @click="tothreed">三维专题视角</el-button>
+      <el-button type="warning" @click="totwod">二维专题视角</el-button>
+      <el-button type="danger" @click="resetView">切换底图</el-button>
+      <el-button type="danger" @click="resetView">重置视图</el-button>
+      
+    </el-button-group>
+</template>
 
-  </template>
-  
-  <script setup>
-  import { onMounted } from "vue";
-  import { ref } from "vue";
-  import { loaddata } from '@/utils/cesiuminit';
-  import { useViewerStore } from '@/stores/cesiumviewer';
-  const store = useViewerStore();
-  const container = document.getElementById("cesiumContainer");
-  let viewer = store.initViewer(container);
-  onMounted(() => {
-    async () => {
-  await nextTick(); // 确保 DOM 更新完成后再执行
+<script setup>
+import { onMounted, nextTick } from "vue";
+import { loaddata } from "@/utils/cesiuminit";
+import { useViewerStore } from "@/stores/cesiumviewer";
+import * as Cesium from "cesium";
+import { threedview } from "../utils/threedview";
+import { splitbyheight } from "../utils/spiltbyheight";
+import { clearview } from "../utils/clearview";
+import { switchmap } from "../utils/switchmap";
+// 获取 Cesium Viewer Store
+const store = useViewerStore();
+let viewer;
+
+onMounted(async () => {
+  await nextTick(); // 确保 DOM 更新完成
   const container = document.getElementById("cesiumContainer");
   if (!container) {
-    console.error("`cesiumContainer` 仍然未找到，确保 MapPage.vue 渲染正确");
+    console.error("`cesiumContainer` 未找到，请检查组件渲染！");
     return;
   }
-  
-  console.log("`cesiumContainer` 找到了，初始化 Cesium...");
-  viewer = store.initViewer(container); // ✅ 传入正确的容器
-  
-}
-  loaddata();
+
+  console.log("✅ `cesiumContainer` 找到，初始化 Cesium...");
+  viewer = store.initViewer(container); // 初始化 Cesium Viewer
+  const process = 0;
+  viewer = loaddata(process);
 });
-  </script>
-  
-  <style scoped>
-  /* 全局布局 */
-.full-height {
+
+// 加载三维数据
+const loadData = () => {
+threedview();
+};
+
+//三维专题地图
+const tothreed = () => {
+  splitbyheight();
+};
+
+
+
+//重置视图
+const resetView = () => {
+  location.reload();
+};
+//二维专题地图
+const totwod = () => {
+switchmap(1);
+};
+//切换底图
+const toswitchmap = ()=>{
+switchmap(0);
+}
+</script>
+
+<style scoped>
+/* 主容器 */
+.map-container {
+  width: 100vw;
   height: 100vh;
-  transform: translateY(-0px);
+  position: relative;
+  overflow: hidden;
 }
 
-/* 侧边栏优化 */
-.el-aside {
-  width: 150px;
-  background: #f8f9fa;
-  opacity: 20;
-  padding: 10px;
-  overflow-y: auto;
-  transform: translateY(-820px);
+/* 按钮组 */
+.control-buttons {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
 }
-/* 侧边栏容器，保证对齐 */
-.aside-container {
+
+html, body, #app {
   width: 100%;
-  height: 40%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
 }
 
-/* 侧边栏的每个组件 */
-.aside-item {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-  min-height: 150px; /* 组件最小高度，避免过小 */
-}
-/* 3D 视图组件 */
-.responsive-view {
-  width: 100%;
-  height: 300px;
-  margin-bottom: 10px;
-  transform: translateY(-10px);
-}
-/* 底部栅格图层 */
-.el-footer {
-  height: 80px;
-  background: #ffffff;
-  border-top: 1px solid #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translateY(-10px);
-}
-/* 响应式优化 */
-@media (max-width: 1024px) {
-  .el-aside {
-    width: 200px;
-  }
-  .responsive-view {
-    height: 250px;
-  }
-}
 
-@media (max-width: 768px) {
-  .el-aside {
-    width: 100px;
-  }
-  .responsive-view {
-    height: 200px;
-  }
-  .el-footer {
-    height: 60px;
-  }
+.map-box {
+  width: 100vw;  
+  height: 100vh; 
+  position: absolute; 
+  top: 0;
+  left: 0;
 }
-  </style>
-  
+</style>
