@@ -28,6 +28,11 @@ export default defineConfig({
         secure: false,  // 如果是https接口，需要配置这个参数 
         rewrite: (path) => path.replace(/^\/api/, '')
       },
+      "/baidu-api": {
+        target: "https://api.map.baidu.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/baidu-api/, ""),
+      },
     }
   },
   css: {
