@@ -30,7 +30,7 @@ onMounted(async () => {
     return;
   }
 
-  console.log("✅ `cesiumContainer` 找到，初始化 Cesium...");
+  console.log("`cesiumContainer` 找到，初始化 Cesium...");
   viewer = store.initViewer(container); // 初始化 Cesium Viewer
   const process = 0;
   viewer = loaddata(process);

@@ -4,7 +4,7 @@ const store = useViewerStore();
 const viewer = store.initViewer();
 async function threedview() {
     if (!viewer) {
-        console.error("❌ viewer 未初始化！");
+        console.error("viewer 未初始化！");
         return;
       }
     const tileset1 = await Cesium.Cesium3DTileset.fromUrl("../../data/3dtiles/tileset.json");

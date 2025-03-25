@@ -4,7 +4,7 @@ const store = useViewerStore();
 const viewer = store.initViewer();
 async function clearview() {
     if (!viewer) {
-        console.error("❌ viewer 未初始化！");
+        console.error("viewer 未初始化！");
         return;
       }
       viewer.entities.removeAll();  // 清除所有实体

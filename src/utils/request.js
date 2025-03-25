@@ -13,6 +13,7 @@ const instance = axios.create({
     const res = response
     if (res.status !== 200) {
       // 抛出一个错误的promise
+      // @ts-ignore
       return Promise.reject(res.message)
     } 
     return res
