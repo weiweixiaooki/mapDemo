@@ -17,7 +17,7 @@ async function loaddata(process) {
         scaleFactor: true
             })
         );
-        
+        viewer._cesiumWidget._creditContainer.style.display = "none";
        const layer_name = 'hkjl:tj_area2'
        let result = await WmsRequestBylayer(layer_name);
        let geojson = result.data;

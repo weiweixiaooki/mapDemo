@@ -4,7 +4,7 @@
       <el-button type="primary" @click="loadData">加载三维数据</el-button>
       <el-button type="success" @click="tothreed">三维专题视角</el-button>
       <el-button type="warning" @click="totwod">二维专题视角</el-button>
-      <el-button type="danger" @click="resetView">切换底图</el-button>
+      <el-button type="danger" @click="toswitchmap">切换底图</el-button>
       <el-button type="danger" @click="resetView">重置视图</el-button>
     </el-button-group>
     <!-- 地址输入框 -->
@@ -98,10 +98,11 @@ watchEffect(() => {
 /* 按钮组 */
 .control-buttons {
   position: absolute;
-  top: 10px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
+  opacity: 0.05; 
 }
 
 html, body, #app {

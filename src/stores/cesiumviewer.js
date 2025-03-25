@@ -23,6 +23,7 @@ export const useViewerStore = defineStore('updateviewer',() =>{
         fullscreenButton: false,
         scene3DOnly: true,
         infoBox: true, // 启用 InfoBox
+        
       });
     }
     return storedviewer;

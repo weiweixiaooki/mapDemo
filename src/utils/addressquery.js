@@ -16,14 +16,15 @@ async function flyto(address) {
         if (data.status === 0) {
             const { lat, lng } = data.result.location;
             console.log(`经纬度: ${lat}, ${lng}`);
-            viewer.camera.flyTo({
+            const currentPosition = viewer.camera.position;
+                    viewer.camera.setView({
                         destination: Cesium.Cartesian3.fromDegrees(lng, lat, 50000),
                         orientation: {
                             heading: Cesium.Math.toRadians(0),
                             pitch: Cesium.Math.toRadians(-90),
                             roll: 0
                         },
-                        duration: 2
+                        
                     });
             return { lat, lng };
         } else {
