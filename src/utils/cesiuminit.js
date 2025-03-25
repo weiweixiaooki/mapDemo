@@ -17,6 +17,15 @@ async function loaddata(process) {
         scaleFactor: true
             })
         );
+        viewer.camera.flyTo({
+                    destination: Cesium.Cartesian3.fromDegrees(117.2, 39.13, 50000),
+                    orientation: {
+                        heading: Cesium.Math.toRadians(0),
+                        pitch: Cesium.Math.toRadians(-90),
+                        roll: 0
+                    },
+                    duration: 2
+                });
        const layer_name = 'hkjl:tj_area2'
        let result = await WmsRequestBylayer(layer_name);
        let geojson = result.data;

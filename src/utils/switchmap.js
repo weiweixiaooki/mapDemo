@@ -21,6 +21,15 @@ async function switchmap(process) {
         scaleFactor: true
             })
         );
+        viewer.camera.flyTo({
+            destination: Cesium.Cartesian3.fromDegrees(117.2, 39.13, 50000),
+            orientation: {
+                heading: Cesium.Math.toRadians(0),
+                pitch: Cesium.Math.toRadians(-90),
+                roll: 0
+            },
+            duration: 2
+        });
         
     } catch (error) {
         console.error("加载 3D Tiles 失败:", error);
